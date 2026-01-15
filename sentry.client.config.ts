@@ -7,24 +7,12 @@ import * as Sentry from "@sentry/nextjs";
 Sentry.init({
   dsn: "https://bf1ebb1ddd623acd9208603ffafe6d6b@o4510629955633152.ingest.us.sentry.io/4510629967757312",
 
-  // Adjust this value in production, or use tracesSampler for greater control
-  tracesSampleRate: 1,
+  // Keep these for performance tracking
+  tracesSampleRate: 1.0,
 
-  // Setting this option to true will print useful information to the console while you're setting up Sentry.
-  debug: false,
-
+  // Keep these for session replay, but without the manual integration block below
   replaysOnErrorSampleRate: 1.0,
-
-  // This sets the sample rate to be 10%. You may want this to be 100% while
-  // in development and sample at a lower rate in production
   replaysSessionSampleRate: 0.1,
 
-  // You can remove this option if you're not planning to use the Sentry Session Replay feature:
-  integrations: [
-    Sentry.replayIntegration({
-      // Additional Replay configuration goes in here, for example:
-      maskAllText: true,
-      blockAllMedia: true,
-    }),
-  ],
+  // We removed the "integrations: [...]" block to fix the "Multiple instances" error.
 });
