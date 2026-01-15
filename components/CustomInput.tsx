@@ -26,14 +26,15 @@ const CustomInput = ({ control, name, label, placeholder }: CustomInput) => {
             {label}
           </FormLabel>
           <div className="flex w-full flex-col">
-            <FormControl>
-              <Input 
-                placeholder={placeholder}
-                className="input-class"
-                type={name === 'password' ? 'password' : 'text'}
-                {...field}
-              />
-            </FormControl>
+          <FormControl>
+  <Input 
+    id={name} // Add this line - it uses the 'name' prop (email, password, etc.)
+    placeholder={placeholder}
+    className="input-class"
+    type={name === 'password' ? 'password' : 'text'}
+    {...field}
+  />
+</FormControl>
             <FormMessage className="form-message mt-2" />
           </div>
         </div>
